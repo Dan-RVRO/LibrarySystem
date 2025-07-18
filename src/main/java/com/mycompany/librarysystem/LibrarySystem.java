@@ -21,16 +21,101 @@ public class LibrarySystem {
 
     public static void main(String[] args) {
         
+        InMemoryBookDao dao = new InMemoryBookDao();
         
+        // Full‐detail books
+        Book b1  = new Book("001", "Java 101",                    "Alice",             "Education");
+        Book b2  = new Book("002", "Spring Boot in Action",       "Craig Walls",       "Framework");
+        Book b3  = new Book("003", "Java Concurrency in Practice","Brian Goetz",       "Programming");
+        Book b4  = new Book("004", "Effective Java",              "Joshua Bloch",      "Programming");
+        Book b5  = new Book("005", "Clean Code",                  "Robert C. Martin",  "Programming");
+        Book b6  = new Book("006", "Domain-Driven Design",        "Eric Evans",        "Software Design");
+        Book b7  = new Book("007", "Refactoring",                 "Martin Fowler",     "Software Engineering");
+        Book b8  = new Book("008", "Head First Design Patterns",  "Eric Freeman",      "Design");
+        Book b9  = new Book("009", "Algorithms, 4th Edition",     "Robert Sedgewick",  "Algorithms");
+        Book b12 = new Book("012", "Microservices Patterns",      "Chris Richardson",  "Architecture");
+        Book b13 = new Book("013", "Test-Driven Development",     "Kent Beck",         "Software Engineering");
+
+        // Single-ISBN (defaults for other fields)
+        Book b10 = new Book("010");
+        Book b11 = new Book("011");
+        Book b14 = new Book("014");
+        Book b15 = new Book("015");
+        Book b16 = new Book("016");
+        
+        Arrays.asList(b1, b2, b3, b4, b5, b6, b7, b8, b9, b10, b11, b12, b13, b14, b15)
+              .forEach(dao::add);
+        
+        System.out.println("add all");
+        List<String> insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+        
+        Arrays.asList(b1, b3, b5, b7, b9, b11, b13, b15)
+              .stream()
+              .map(Book::getIsbn)
+              .forEach(dao::remove);
+        System.out.println("remove b1, b3, b5, b7, b9, b11, b13, b15");
+        insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+        
+        dao.add(b16);
+        
+        System.out.println("add(b16)");
+        insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+        
+        dao.add(b2);
+        
+        System.out.println("add(b2)");
+        insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+        
+        dao.add(b3);
+        
+        System.out.println("add(b3)");
+        insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+        
+        Arrays.asList(b10)
+              .stream()
+              .map(Book::getIsbn)
+              .forEach(dao::remove);
+        
+        System.out.println("remove(b10)");
+        insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+        
+        Arrays.asList(b11)
+              .stream()
+              .map(Book::getIsbn)
+              .forEach(dao::remove);
+        
+        System.out.println("remove(b11)");
+        insertionOrder = dao.findInsertionOrder();
+        insertionOrder.forEach(System.out::println);
+        System.out.println(dao.findAll());
+        System.out.println("");
+
+
         /*
         InMemoryBookDao dao = new InMemoryBookDao();
         
         Book b1  = new Book("001", "Java 101", "Alice", "Education");
         Book b2  = new Book("002", "Spring Boot", "Bob", "Framework");
-        
         Book b4  = new Book("004", "Effective Java", "Joshua Bloch", "Programming");
         Book b5  = new Book("005", "Clean Code", "Robert C. Martin", "Programming");
-        
         Book b7  = new Book("007", "Refactoring", "Martin Fowler", "Software Engineering");
         Book b8  = new Book("008", "Head First Design Patterns", "Eric Freeman", "Design");
         Book b9  = new Book("009", "Algorithms, 4th Edition", "Robert Sedgewick", "Algorithms");
@@ -60,7 +145,7 @@ public class LibrarySystem {
         dao.add2ArrayList(b6);
         System.out.println("All Books ArrayList: " + dao.findAll2());
         
-        */
+        
 /*          InMemoryBookDao dao = new InMemoryBookDao();
         dao.add(b1);
         dao.add(b2);

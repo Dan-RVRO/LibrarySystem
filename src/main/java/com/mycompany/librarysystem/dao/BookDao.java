@@ -11,9 +11,9 @@ import java.util.List;
 public interface BookDao {
     //Note that the method signatures have no braces and are terminated with a semicolon.
     void add(Book book);
-    void add2ArrayList(Book book);
     Book findByIsbn(String isbn);
     List<Book> findAll();
+    List<String> findInsertionOrder();
     void remove(String isbn);
 }
 

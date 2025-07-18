@@ -24,14 +24,10 @@ public class Book implements Comparable<Book> {
     // Overloaded constructor: minimal info
     public Book(String isbn) {
         //Constructor Chaining
-        //By using this(); in the first line of the constructor it indicates 
-        //To java to use Full contructor instead of default super(); constructor 
-        
         // Chainned to Full Contructor, this(); calls a constructor within the class
         //this(isbn, null, null, null);
         
         // not Chainned to Full Contructor will call super();
-        
         this.isbn = isbn;
         this.title = title;
         this.author = author;
